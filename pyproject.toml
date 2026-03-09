@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cafm"
+version = "0.1.0"
+description = "CAFM Data Modeling and Integration Platform"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+dependencies = [
+    "pydantic>=2.10,<3.0",
+    "pydantic-settings>=2.6,<3.0",
+    "sqlalchemy[asyncio]>=2.0.36,<2.1",
+    "structlog>=24.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+postgresql = [
+    "asyncpg>=0.30",
+    "psycopg2-binary>=2.9",
+]
+mysql = [
+    "aiomysql>=0.2",
+    "PyMySQL>=1.1",
+]
+mssql = [
+    "aioodbc>=0.5",
+    "pyodbc>=5.1",
+]
+mongodb = [
+    "motor>=3.6",
+    "pymongo>=4.9",
+]
+files = [
+    "pandas>=2.2,<3.0",
+    "openpyxl>=3.1",
+]
+ai = [
+    "pandas>=2.2,<3.0",
+    "numpy>=2.0",
+]
+all = [
+    "cafm[postgresql,mysql,mssql,mongodb,files,ai]",
+]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+    "mypy>=1.13",
+    "ruff>=0.8",
+]
+
+[project.entry-points."cafm.connectors"]
+postgresql = "cafm.connectors.plugins.postgresql:PostgreSQLConnector"
+mysql = "cafm.connectors.plugins.mysql:MySQLConnector"
+mssql = "cafm.connectors.plugins.mssql:MSSQLConnector"
+mongodb = "cafm.connectors.plugins.mongodb:MongoDBConnector"
+csv = "cafm.connectors.plugins.csv_source:CSVConnector"
+excel = "cafm.connectors.plugins.excel:ExcelConnector"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+strict = true

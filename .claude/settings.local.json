@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test -d \"C:\\\\CAFM\")",
+      "Bash(pip --version)",
+      "Bash(pip3 --version)",
+      "Bash(pip show pydantic sqlalchemy pymongo pandas openpyxl)",
+      "Bash(python -c \":*)",
+      "Bash(git init)",
+      "Bash(git add -A)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
