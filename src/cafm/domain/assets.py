@@ -34,8 +34,15 @@ class Asset(CAFMBaseModel):
     # Identification
     serial_number: str | None = None
     barcode: str | None = None
+    qr_code: str | None = None  # Auto-generated unique QR code per AICMMS spec
+    qr_code_url: str | None = None  # Printable QR code image URL
     manufacturer: str | None = None
     model_number: str | None = None
+
+    # Onboarding source (AICMMS: assets can be created via image, query, import)
+    onboarding_method: str | None = None  # "manual", "import", "image_detection", "query"
+    spec_document_urls: list[str] = Field(default_factory=list)  # Warranty/spec docs
+    photo_urls: list[str] = Field(default_factory=list)
 
     # Status
     status: AssetStatus = AssetStatus.ACTIVE

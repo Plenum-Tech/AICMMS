@@ -1,0 +1,6 @@
+asset_id,name,category,facility_id,status,condition,purchase_cost
+HVAC-001,Rooftop AC Unit 1,HVAC,BLDG-A,active,good,15000
+HVAC-002,Rooftop AC Unit 2,HVAC,BLDG-A,active,fair,15000
+PUMP-001,Water Pump Main,plumbing,BLDG-A,active,excellent,5000
+ELEV-001,Passenger Elevator 1,elevator,BLDG-A,under_maintenance,poor,250000
+GEN-001,Backup Generator,electrical,BLDG-B,active,good,85000
