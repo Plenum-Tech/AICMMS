@@ -17,7 +17,11 @@ from cafm.api.middleware import (
     RequestLoggingMiddleware,
     cafm_error_to_status,
 )
-from cafm.api.routes import assets, auth, connectors, dashboard, health, technicians, work_orders
+from cafm.api.routes import (
+    assets, auth, connectors, costs, dashboard, documents,
+    facilities, gamification, health, inspections, maintenance,
+    occupancy, query, sensors, technicians, vendors, work_orders,
+)
 from cafm.api.websocket import create_event_bridge, websocket_endpoint, ws_manager
 from cafm.core.config import AppConfig
 from cafm.core.events import EventBus
@@ -121,6 +125,16 @@ def create_app() -> FastAPI:
     app.include_router(work_orders.router, prefix=api_v1_prefix)
     app.include_router(technicians.router, prefix=api_v1_prefix)
     app.include_router(dashboard.router, prefix=api_v1_prefix)
+    app.include_router(facilities.router, prefix=api_v1_prefix)
+    app.include_router(vendors.router, prefix=api_v1_prefix)
+    app.include_router(inspections.router, prefix=api_v1_prefix)
+    app.include_router(maintenance.router, prefix=api_v1_prefix)
+    app.include_router(documents.router, prefix=api_v1_prefix)
+    app.include_router(costs.router, prefix=api_v1_prefix)
+    app.include_router(gamification.router, prefix=api_v1_prefix)
+    app.include_router(sensors.router, prefix=api_v1_prefix)
+    app.include_router(query.router, prefix=api_v1_prefix)
+    app.include_router(occupancy.router, prefix=api_v1_prefix)
 
     # WebSocket endpoint
     app.websocket("/ws/dashboard")(websocket_endpoint)

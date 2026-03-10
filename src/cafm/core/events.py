@@ -36,6 +36,10 @@ class EventType(StrEnum):
     RECORD_UPDATED = "record.updated"
     RECORD_DELETED = "record.deleted"
 
+    # IoT / Sensors
+    THRESHOLD_BREACHED = "sensor.threshold_breached"
+    ANOMALY_DETECTED = "sensor.anomaly_detected"
+
 
 @dataclass(frozen=True)
 class Event:
